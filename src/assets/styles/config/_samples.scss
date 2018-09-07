@@ -1,0 +1,24 @@
+%Malleable {
+    font-family: $font-family-heading;
+    letter-spacing: .025em;
+
+    &--uppercase {
+        @extend %Malleable;
+        
+        text-transform: uppercase;
+        letter-spacing: .125em;
+    }
+}
+
+%OpenSans {
+    font-family: $font-family-base;
+    letter-spacing: 0;
+
+    &--bold-uppercase {
+        @extend %OpenSans;
+
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .2em;
+    }
+}

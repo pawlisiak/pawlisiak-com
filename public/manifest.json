@@ -1,6 +1,6 @@
 {
-  "name": "pawlisiak-com",
-  "short_name": "pawlisiak-com",
+  "name": "Pawlisiak.com",
+  "short_name": "pawlisiak",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",
@@ -15,6 +15,6 @@
   ],
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#4DBA87"
+  "background_color": "#ccc",
+  "theme_color": "#fff"
 }

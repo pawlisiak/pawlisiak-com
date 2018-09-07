@@ -1,0 +1,14 @@
+body {
+  overflow-x: hidden;
+  margin: 0;
+  color: $color-body-font;
+  background-color: $color-body-background;
+
+  &.is-locked {
+    overflow: hidden;
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}

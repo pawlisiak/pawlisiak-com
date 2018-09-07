@@ -1,0 +1,53 @@
+.icon {
+	&-16, &-24,
+	&-32, &-48 {
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	&-9 {
+		width: 9px;
+		height: 9px;
+		stroke-width: 1;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke: currentColor;
+		fill: none;
+	}
+
+	&-16 {
+		width: 16px;
+		height: 16px;
+	}
+
+	&-24 {
+		width: 24px;
+		height: 24px;
+	}
+
+	&-32 {
+		width: 32px;
+		height: 32px;
+	}
+
+	&-48 {
+		width: 48px;
+		height: 48px;
+	}
+}
+
+.logo-kplabs {
+	width: 136px;
+	height: 34px;
+}
+
+.logo-fp {
+	width: 170px;
+	height: 22px;
+}
+
+.logo-fpi {
+	width: 183px;
+	height: 28px;
+}

@@ -1,0 +1,111 @@
+.row {
+	display: flex;
+	align-items: stretch;
+	flex-wrap: wrap;
+	width: 100%;
+	max-width: $grid-container-width + ($grid-container-padding * 2);
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: $grid-container-padding;
+	padding-right: $grid-container-padding;
+
+	.row {
+		width: calc(100% + 2 * #{$grid-column-gutter});
+		max-width: none;
+		margin-left: -$grid-column-gutter;
+		margin-right: -$grid-column-gutter;
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	&.fluid {
+		max-width: none;
+	}
+
+	&.nowrap {
+		flex-wrap: nowrap;
+	}
+
+	&.no-gutter {
+		> .column {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+
+	&.align {
+		&-left {
+			justify-content: flex-start;
+		}
+
+		&-center {
+			justify-content: center;
+		}
+
+		&-right {
+			justify-content: flex-end;
+		}
+	}
+
+	> .column {
+		flex-grow: 0;
+		flex-shrink: 0;
+		width: 100%;
+
+		@if $grid-column-gutter > 0 {
+			padding-left: $grid-column-gutter;
+			padding-right: $grid-column-gutter;
+		}
+
+		@each $name, $pixels in $breakpoints {
+
+			@include breakpoint ($name) {
+				// .sm-off-auto
+				&.#{$name}-off-auto {
+					margin-left: auto;
+				}
+
+				&.#{$name}-off-0 {
+					margin-left: 0;
+				}
+
+				@for $count from 1 to $grid-column-count + 1 {
+
+					// .sm-10
+					&.#{$name}-#{$count} {
+						width: $count / $grid-column-count * 100%;
+					}
+
+					// .sm-off-10
+					&.#{$name}-off-#{$count - 1} {
+						margin-left: ($count - 1) / $grid-column-count * 100%;
+					}
+
+					// .sm-off-rt-10
+					&.#{$name}-off-rt-#{$count - 1} {
+						margin-right: ($count - 1) / $grid-column-count * 100%;
+					}
+
+					@include breakpoint ($name down) {
+						// .sm-order-2
+						&.#{$name}-order-#{$count} {
+							order: $count;
+						}
+					}
+				}
+
+				@include breakpoint ($name down) {
+					// .sm-hidden
+					&.#{$name}-hidden {
+						display: none;
+					}
+				}
+			}
+		}
+
+		&.row {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+}

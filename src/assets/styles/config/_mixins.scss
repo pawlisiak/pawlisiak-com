@@ -1,0 +1,112 @@
+// Responsive breakpoints
+@mixin breakpoint ($breakpoint) {
+	@if $breakpoint {
+		@if map-has-key($breakpoints, $breakpoint) {
+			@media (min-width: #{map-get($breakpoints, $breakpoint)}px) {
+				@content;
+
+			}
+		}
+
+		@else if str-index(#{$breakpoint}, ' down') {
+			@each $name, $pixels in $breakpoints {
+				@if str-index(#{$breakpoint}, $name + ' ') {
+					@if map-get-next($breakpoints, $name) {
+						@media (max-width: #{map-get-next($breakpoints, $name) - 1}px) {
+							@content;
+						}
+					}
+				}
+			}
+		}
+
+		@else if str-index(#{$breakpoint}, ' only') {
+			@each $name, $pixels in $breakpoints {
+				@if str-index(#{$breakpoint}, $name + ' ') {
+					@if map-get-next($breakpoints, $name) {
+						@media (min-width: #{map-get($breakpoints, $name)}px) and (max-width: #{map-get-next($breakpoints, $name) - 1}px) {
+							@content;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+// Horizontal linear gradient
+@mixin horizontalGradient($from, $to){
+	background: $from; /* Old browsers */
+	background: -moz-linear-gradient(left,  $from, 0%, $to 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%, $from), color-stop(100%, $to)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  $from 0%, $to 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  $from 0%, $to 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  $from 0%, $to 100%); /* IE10+ */
+	background: linear-gradient(to right,  $from 0%, $to 100%); /* W3C */
+}
+
+// Horizontal linear gradient
+@mixin verticalGradient($from, $to){
+	background: $from; /* Old browsers */
+	background: -moz-linear-gradient(top,  $from, 0%, $to 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, top, bottom, color-stop(0%, $from), color-stop(100%, $to)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  $from 0%, $to 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  $from 0%, $to 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  $from 0%, $to 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  $from 0%, $to 100%); /* W3C */
+}
+
+// Triangle powered by borders
+@mixin triangle($width: 20, $height: 10, $direction: top, $color: red) {
+	@if ($width < 1 or $height < 1) {
+		@warn "Traingle can't be smaller than 1px!";
+	}
+
+	@else if (not contains((top, right, bottom, left), $direction)) {
+		@warn "Direction must be one of: top, right, bottom, left";
+	}
+
+	@else {
+		$size: 0;
+
+		@if (contains((top, bottom), $direction)) {
+			border-left: #{$width / 2}px solid transparent;
+			border-right: #{$width / 2}px solid transparent;
+			$size: $height;
+		}
+
+		@else if (contains((left, right), $direction)) {
+			border-top: #{$height / 2}px solid transparent;
+			border-bottom: #{$height / 2}px solid transparent;
+			$size: $width;
+		}
+
+		$direction-map: (
+			top: bottom,
+			right: left,
+			bottom: top,
+			left: right
+		);
+
+		border-#{map-get($direction-map, $direction)}: #{$size}px solid #{$color};
+	}
+}
+
+// Dotted border
+@mixin dottedBorder($size: 2px, $position: right, $space: 4px, $color: $color-gray) {
+	@if (contains((top, bottom), $position)) {
+		background-image: linear-gradient(to right, $color $size, rgba($color, 0) 0%);
+		background-position: #{$position};
+		background-position-x: 0;
+		background-size: #{$size + $space} $size;
+		background-repeat: repeat-x;
+	}
+
+	@if (contains((left, right), $position)) {
+		background-image: linear-gradient($color $size, rgba($color, 0) 0%);
+		background-position: #{$position};
+		background-position-y: 0;
+		background-size: $size #{$size + $space};
+		background-repeat: repeat-y;
+	}
+}

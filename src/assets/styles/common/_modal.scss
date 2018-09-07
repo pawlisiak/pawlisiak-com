@@ -1,0 +1,117 @@
+.c-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: +1;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+	box-sizing: border-box;
+	overflow-x: hidden;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(black, .6);
+	perspective: 1000;
+	transition: .4s;
+	transition-property: background, opacity;
+
+	@include breakpoint (sm down) {
+		align-items: flex-start;
+	}
+
+	&__content {
+		position: relative;
+		width: 100%;
+		max-width: $grid-container-width / 1.5;
+		margin: 60px 100px;
+		padding: 30px 45px;
+		background-color: white;
+		box-shadow: 0 2px 5px rgba(black, .6);
+		transition: .4s;
+		transition-property: opacity, transform, top;
+
+		&.small {
+			max-width: $grid-container-width / 2;
+		}
+
+		&.large {
+			max-width: $grid-container-width;
+		}
+
+		@include breakpoint (sm down) {
+			&,
+			&.small,
+			&.large {
+				max-width: none;
+				min-height: 100vh;
+				margin: 0 0;
+			}
+		}
+	}
+}
+
+.m-modalHeader {
+	@include breakpoint (sm down) {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+	}
+
+	&__close {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		width: 40px;
+		height: 40px;
+		font-size: 0;
+		border: 0;
+		background: none;
+		cursor: pointer;
+
+		&:focus {
+			outline: none;
+		}
+	}
+}
+
+.modalAnim {
+	&-enter {
+		background-color: rgba(black, 0);
+	}
+
+	&-enter {
+		> .c-modal__content {
+			opacity: 0;
+
+			@include breakpoint (sm down) {
+				position: fixed;
+				top: 40vh;
+			}
+
+			@include breakpoint (md) {
+				transform: scale(.9) translateY(100px) rotateX(-30deg);
+			}
+		}
+	}
+
+	&-enter-to {
+		> .c-modal__content {
+			opacity: 1;
+
+			@include breakpoint (sm down) {
+				position: fixed;
+				top: 0;
+			}
+
+			@include breakpoint (md) {
+				transform: scale(1) translateY(0) rotateX(0deg);
+			}
+		}
+	}
+
+	&-leave-to {
+		opacity: 0;
+	}
+}

@@ -1,0 +1,65 @@
+// Table of contents:
+//
+// 1. Grid
+// 2. Colors
+// 3. Fonts
+// 4. Miscelaneous
+
+// 1. Grid
+// -------
+
+$grid-container-width: 1200px;
+$grid-container-padding: 10px;
+
+$grid-column-count: 12;
+$grid-column-gutter: 10px;
+
+$breakpoints: (
+	xs: 0,
+	sm: 480,
+	md: 640,
+	lg: 900,
+	xl: 1200
+);
+
+// 2. Colors
+// ---------
+
+// Grayscale
+$color-gray-lighter: #f5f5f5;
+$color-gray-light: #ccc;
+$color-gray: #888;
+$color-gray-dark: #333;
+$color-gray-darker: #111;
+
+// Brand colors
+$color-brand-primary: red;
+$color-brand-secondary: blue;
+$color-brand-accent: green;
+
+// Statusses
+$color-alert-success: green;
+$color-alert-warning: #ffa000;
+$color-alert-error: red;
+
+// Global colors
+$color-body-background: $color-gray-light;
+$color-body-font: $color-gray;
+
+
+// 3. Fonts
+// --------
+
+$font-family-base: 'Open Sans', sans-serif;
+$font-family-heading: 'Bebas Neue', sans-serif;
+$font-family-console: 'Monaco', monotype;
+
+$font-size-base: 16px;
+$font-size-small: 12px;
+$font-size-large: 20px;
+
+
+// 4. Miscelaneous
+// ---------------
+
+$border-radius-base: 0;
